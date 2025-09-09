@@ -1,0 +1,111 @@
+{
+  "uid" : "87ecd2c58bd88925",
+  "name" : "Cannot create order with invalid ingredient hash",
+  "fullName" : "ru.yandex.praktikum.tests.CreateOrderTest.cannotCreateOrderWithInvalidIngredientHashTest",
+  "historyId" : "87de491bda5ba3b3210169ae5f7e2791",
+  "time" : {
+    "start" : 1757421889547,
+    "stop" : 1757421890727,
+    "duration" : 1180
+  },
+  "description" : "Test creating order with invalid ingredient hash returns error",
+  "descriptionHtml" : "<p>Test creating order with invalid ingredient hash returns error</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "description" : "Test creating order with invalid ingredient hash returns error",
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Create order with authorization",
+      "time" : {
+        "start" : 1757421889866,
+        "stop" : 1757421890094,
+        "duration" : 228
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "order",
+        "value" : "Order(ingredients=[invalidHash123, wrongHash456])"
+      }, {
+        "name" : "accessToken",
+        "value" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzAyMTQxOWVkMjgwMDAxYjY5NDNlNCIsImlhdCI6MTc1NzQyMTg4OSwiZXhwIjoxNzU3NDIzMDg5fQ.or9hThgOhOuF-j5Q81ewVeRrexr-lO0Nv8A-xrxyAFc"
+      } ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false
+    }, {
+      "name" : "Check response status code is 500",
+      "time" : {
+        "start" : 1757421890095,
+        "stop" : 1757421890096,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "response",
+        "value" : "io.restassured.internal.RestAssuredResponseImpl@71c69628"
+      }, {
+        "name" : "expectedCode",
+        "value" : "500"
+      } ],
+      "hasContent" : true,
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "ru.yandex.praktikum.tests"
+  }, {
+    "name" : "testClass",
+    "value" : "ru.yandex.praktikum.tests.CreateOrderTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "cannotCreateOrderWithInvalidIngredientHashTest"
+  }, {
+    "name" : "suite",
+    "value" : "ru.yandex.praktikum.tests.CreateOrderTest"
+  }, {
+    "name" : "host",
+    "value" : "MacBook-Air-Hvan.local"
+  }, {
+    "name" : "thread",
+    "value" : "4223@MacBook-Air-Hvan.local.main(1)"
+  }, {
+    "name" : "framework",
+    "value" : "junit4"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "87ecd2c58bd88925.json",
+  "parameterValues" : [ ]
+}
