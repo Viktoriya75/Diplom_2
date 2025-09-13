@@ -1,15 +1,14 @@
 package ru.yandex.praktikum.tests;
 
+import com.github.javafaker.Faker;
 import org.junit.Before;
 import ru.yandex.praktikum.steps.OrderSteps;
 import ru.yandex.praktikum.steps.UserSteps;
-import ru.yandex.praktikum.constants.Constants;
-
-import java.util.UUID;
 
 public class BaseTest {
     protected UserSteps userSteps;
     protected OrderSteps orderSteps;
+    protected Faker faker = new Faker();
     
     @Before
     public void setUp() {
@@ -18,14 +17,14 @@ public class BaseTest {
     }
     
     protected String generateRandomEmail() {
-        return Constants.TEST_EMAIL_PREFIX + UUID.randomUUID().toString() + Constants.TEST_EMAIL_DOMAIN;
+        return faker.internet().emailAddress();
     }
     
     protected String generateRandomPassword() {
-        return Constants.TEST_PASSWORD_PREFIX + UUID.randomUUID().toString();
+        return faker.internet().password(8, 16);
     }
     
     protected String generateRandomName() {
-        return Constants.TEST_NAME_PREFIX + UUID.randomUUID().toString().substring(0, Constants.TEST_NAME_UUID_LENGTH);
+        return faker.name().firstName();
     }
 }

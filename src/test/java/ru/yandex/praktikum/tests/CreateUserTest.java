@@ -15,9 +15,20 @@ import static org.junit.Assert.*;
 public class CreateUserTest extends BaseTest {
     
     private String accessToken;
+    private Response createUserResponse;
     
     @After
     public void tearDown() {
+        // Получаем токен в методе с аннотацией @After
+        if (createUserResponse != null && createUserResponse.getStatusCode() == 200) {
+            try {
+                UserResponse userResponse = createUserResponse.as(UserResponse.class);
+                accessToken = userResponse.getAccessToken();
+            } catch (Exception e) {
+                // Игнорируем ошибки получения токена
+            }
+        }
+        
         if (accessToken != null) {
             try {
                 userSteps.deleteUserNoStep(accessToken);
@@ -33,18 +44,16 @@ public class CreateUserTest extends BaseTest {
     public void createUniqueUserSuccessfullyTest() {
         User user = new User(generateRandomEmail(), generateRandomPassword(), generateRandomName());
         
-        Response response = userSteps.createUser(user);
-        userSteps.checkStatusCode(response, SC_OK);
+        createUserResponse = userSteps.createUser(user);
+        userSteps.checkStatusCode(createUserResponse, SC_OK);
         
-        UserResponse userResponse = response.as(UserResponse.class);
+        UserResponse userResponse = createUserResponse.as(UserResponse.class);
         assertTrue("Success field should be true", userResponse.isSuccess());
         assertNotNull("User data should not be null", userResponse.getUser());
         assertNotNull("Access token should not be null", userResponse.getAccessToken());
         assertNotNull("Refresh token should not be null", userResponse.getRefreshToken());
         assertEquals("Email should match", user.getEmail().toLowerCase(), userResponse.getUser().getEmail());
         assertEquals("Name should match", user.getName(), userResponse.getUser().getName());
-        
-        accessToken = userResponse.getAccessToken();
     }
     
     @Test
@@ -53,9 +62,8 @@ public class CreateUserTest extends BaseTest {
     public void cannotCreateDuplicateUserTest() {
         User user = new User(generateRandomEmail(), generateRandomPassword(), generateRandomName());
         
-        Response firstResponse = userSteps.createUser(user);
-        userSteps.checkStatusCode(firstResponse, SC_OK);
-        accessToken = firstResponse.as(UserResponse.class).getAccessToken();
+        createUserResponse = userSteps.createUser(user);
+        userSteps.checkStatusCode(createUserResponse, SC_OK);
         
         Response duplicateResponse = userSteps.createUser(user);
         userSteps.checkStatusCode(duplicateResponse, SC_FORBIDDEN);
